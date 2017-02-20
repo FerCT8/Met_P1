@@ -4,7 +4,7 @@
  */
 
 package met_p1;
-import utilidades.*;
+import met_p1.*;
 
 import java.io.File;
 import java.io.IOException;
