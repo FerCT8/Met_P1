@@ -1,26 +1,22 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package met_p1;
-
-import java.util.Random;
+package utilidades;
 
 /**
  *
- * @author Juan.Giralt
+ * @author marcos
  */
-public class MatricesOperaciones{
-	
-
+public class MatricesOperaciones {
+    
     public static String mostrar(int [] A){
         String s="";
         for(int n=0;n<A.length;n++) s=s+A[n]+" ";
         return s;
     }
-//hola
-    
+
 
     public static String mostrar(int[][] A){
         String s="";
@@ -28,5 +24,4 @@ public class MatricesOperaciones{
         return s;
     }
     
-  
-}//MatricesOperaciones
+}
