@@ -50,7 +50,7 @@ public class PruebaOrdenacion {
         } while (repetir == 'S');
     }
 
-    public static int[] crearVector() {
+    public static int[] crearVector() throws FileNotFoundException{
         int[] V = null;
         char fuenteDatos = leer.caracter("¿Desde dónde quieres cargar los datos:\n T=teclado\n F=archivo\n A=crearlo con valores aleatorios");
         fuenteDatos = Character.toUpperCase(fuenteDatos);
@@ -60,15 +60,15 @@ public class PruebaOrdenacion {
         }
         switch(fuenteDatos){
             case 'T':
-                cargarDatosTeclado(V);
+                V = cargarDatosTeclado(V);
                 break;
             case 'F':
                 String x=leer.cadena("Introduce el nombre del fichero");
                 /*Podemos poner un switch con los dos nombres,es más facil para probar.*/
-                cargarDatosArchivo(x);
+                V = cargarDatosArchivo(x);
                 break;
             case 'A':
-                cargarDatosAleatorio();
+                V = cargarDatosAleatorio();
                 break;
         }
         return V;
