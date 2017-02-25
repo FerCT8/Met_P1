@@ -8,6 +8,7 @@ package complejidad;
 import utilidades.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
@@ -82,9 +83,21 @@ public class PruebaOrdenacion {
         return A;
     }
 
-    public static int[] cargarDatosArchivo(String nombre) {
+    public static int[] cargarDatosArchivo(String nombre) throws FileNotFoundException {
         // Coge el tamaño de la linea de l archivo
-        
+  
+    	File fichero=new File(nombre);
+    	Scanner sc =new Scanner(fichero);
+    	
+    	int []V=new int[sc.nextInt()];
+    	while(sc.hasNext()){
+    		for(int i=0;i<V.length;i++){
+        		V[i]=sc.nextInt();
+    		}	
+    	}
+    	sc.close();
+    	
+    	return V;
     }
 
     public static int[] cargarDatosAleatorio() {
