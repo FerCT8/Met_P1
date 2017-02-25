@@ -28,7 +28,7 @@ public class PruebaOrdenacion {
         do {
             System.out.println("\n\nRealizaremos una prueba para un tamaño de vector dado");
             int[] A = crearVector();
-            
+            //int[] B = new int[A.length];
 
             System.arraycopy(A, 0, B, 0, A.length);
             System.out.println("A\n" + MatricesOperaciones.mostrar(A));
@@ -57,17 +57,18 @@ public class PruebaOrdenacion {
             System.out.println("Ha introducido una opción incorrecta. Vuelva a intentarlo");
             fuenteDatos = Character.toUpperCase(leer.caracter("¿Desde dónde quieres cargar los datos:\n T=teclado\n F=archivo\n A=crearlo con valores aleatorios"));
         }
-        switch(fuenteDatos)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        switch(fuenteDatos){
+            case 'T':
+                cargarDatosTeclado(V);
+                break;
+            case 'F':
+                String x=leer.cadena("Introduce el nombre del fichero");
+                cargarDatosArchivo(x);
+                break;
+            case 'A':
+                cargarDatosAleatorio();
+                break;
+        }
         return V;
     }
 
@@ -82,6 +83,7 @@ public class PruebaOrdenacion {
 
     public static int[] cargarDatosArchivo(String nombre) {
         // Coge el tamaño de la linea de l archivo
+        return null;
     }
 
     public static int[] cargarDatosAleatorio() {
@@ -91,6 +93,7 @@ public class PruebaOrdenacion {
 
     public static int[] cargarDatosAleatorio(int size) {
         
+        return null;
     }
 
     public static void burbuja(int[] t) {
