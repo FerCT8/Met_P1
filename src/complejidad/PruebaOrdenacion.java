@@ -147,6 +147,12 @@ public class PruebaOrdenacion {
     }
 
     static long obtenerTiempo(char medida) {
+        //Devuelve el tiempo dependiendo de si es Mili o Nano/segundos.
+        if(medida=='M'){
+            return System.currentTimeMillis();
+        }else{
+            return System.nanoTime();
+        }
     }
 
 }
