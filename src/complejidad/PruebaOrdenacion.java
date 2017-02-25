@@ -63,6 +63,7 @@ public class PruebaOrdenacion {
                 break;
             case 'F':
                 String x=leer.cadena("Introduce el nombre del fichero");
+                /*Podemos poner un switch con los dos nombres, más facil para probar.*/
                 cargarDatosArchivo(x);
                 break;
             case 'A':
