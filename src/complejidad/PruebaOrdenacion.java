@@ -84,7 +84,7 @@ public class PruebaOrdenacion {
 
     public static int[] cargarDatosArchivo(String nombre) {
         // Coge el tamaño de la linea de l archivo
-        return null;
+        
     }
 
     public static int[] cargarDatosAleatorio() {
@@ -94,7 +94,7 @@ public class PruebaOrdenacion {
 
     public static int[] cargarDatosAleatorio(int size) {
         
-        return null;
+        
     }
 
     public static void burbuja(int[] t) {
