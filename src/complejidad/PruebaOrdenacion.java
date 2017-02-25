@@ -19,12 +19,12 @@ import java.util.Scanner;
  */
 public class PruebaOrdenacion {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         apartado1();
         apartado2();
     }
 
-    public static void apartado1() {
+    public static void apartado1() throws IOException{
         char repetir;
         do {
             System.out.println("\n\nRealizaremos una prueba para un tamaño de vector dado");
@@ -136,7 +136,7 @@ public class PruebaOrdenacion {
         }
     }
 
-    public static void apartado2() {
+    public static void apartado2(){
 
         System.out.println("\n\nAhora realizaremos pruebas con distintos tamaños del vector");
         int[] valoresN = {100, 500, 1000, 5000, 8000, 9000, 10000, 11000, 20000, 50000};
