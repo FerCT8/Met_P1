@@ -15,7 +15,6 @@ import java.util.Scanner;
 
 /**
  *
- * @author marcos
  */
 public class PruebaOrdenacion {
 
@@ -28,6 +27,10 @@ public class PruebaOrdenacion {
         char repetir;
         do {
             System.out.println("\n\nRealizaremos una prueba para un tamaño de vector dado");
+            //String x="Introduce el tamaño del vector";
+            //System.out.println(x);
+            
+            
             int[] A = crearVector();
             int[] B = new int[A.length];
 
@@ -52,39 +55,55 @@ public class PruebaOrdenacion {
 
     public static int[] crearVector() throws FileNotFoundException{
         int[] V = null;
-        char fuenteDatos = leer.caracter("¿Desde dónde quieres cargar los datos:\n T=teclado\n F=archivo\n A=crearlo con valores aleatorios");
+        int size=leer.entero("Introduce el tamaño del vector");
+        char fuenteDatos = leer.caracter("¿Desde dónde quieres cargar los datos:\n "
+                + "T=teclado\n F=archivo\n A=crearlo con valores aleatorios");
         fuenteDatos = Character.toUpperCase(fuenteDatos);
+        
         while (fuenteDatos != 'T' && fuenteDatos != 'F' && fuenteDatos != 'A') {
             System.out.println("Ha introducido una opción incorrecta. Vuelva a intentarlo");
-            fuenteDatos = Character.toUpperCase(leer.caracter("¿Desde dónde quieres cargar los datos:\n T=teclado\n F=archivo\n A=crearlo con valores aleatorios"));
+            fuenteDatos = Character.toUpperCase(leer.caracter("¿Desde dónde quieres cargar los datos:\n"
+                    + " T=teclado\n F=archivo\n A=crearlo con valores aleatorios"));
         }
         switch(fuenteDatos){
             case 'T':
-                V = cargarDatosTeclado(V);
+               V = cargarDatosTeclado(V,size);
                 break;
             case 'F':
-                String x=leer.cadena("Introduce el nombre del fichero .dat");
-                /*Podemos poner un switch con los dos nombres,es más facil para probar.*/
-                V = cargarDatosArchivo(x);
+                String a="Prueba1_1.dat";
+                String b="Prueba1_2.dat";
+                System.out.println("a) "+a+"\n"+"b) "+b);
+                String x=leer.cadena("¿Que archivo quieres utilizar?");
+                switch(x){
+                    case "a":
+                        V=cargarDatosArchivo(a);
+                    break;
+                    case "b":
+                        V=cargarDatosArchivo(b);
+                    break;
+                    default:
+                        System.out.println("Selecciona una opcion valida");
+                }
                 break;
             case 'A':
-                V = cargarDatosAleatorio();
-                break;
-        }
+                V = cargarDatosAleatorio(size);
+                break;    
+        }   
         return V;
     }
 
-    public static int[] cargarDatosTeclado(int[]A) {
-        // Lo primero pide el tamaño del vector
-      
-        int x=leer.entero("Introduce el tamaño del vector");
-        A=new int[x];     
+    public static int[] cargarDatosTeclado(int[]A,int size) {
         
+// Lo primero pide el tamaño del vector
+        A=new int[size];    
+        
+        for(int i=0;i<A.length;i++){
+           A[i]=leer.entero("Introduzca un valor en la posicion "+i);
+        }
         return A;
     }
 
     public static int[] cargarDatosArchivo(String nombre) throws FileNotFoundException {
-  
         int[] V;
         Scanner sc = new Scanner(new File(nombre));
         //Primer numero es el tamaño.
@@ -104,8 +123,11 @@ public class PruebaOrdenacion {
     }
 
     public static int[] cargarDatosAleatorio(int size) {
-        
         int []V=new int[size];
+        
+        for( int i=0; i<V.length; i++){
+            V[i]=(int)(Math.random()*99+1);
+        }
         return V;
     }
 
