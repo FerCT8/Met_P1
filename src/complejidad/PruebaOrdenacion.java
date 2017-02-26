@@ -29,7 +29,7 @@ public class PruebaOrdenacion {
         do {
             System.out.println("\n\nRealizaremos una prueba para un tamaño de vector dado");
             int[] A = crearVector();
-            //int[] B = new int[A.length];
+            int[] B = new int[A.length];
 
             System.arraycopy(A, 0, B, 0, A.length);
             System.out.println("A\n" + MatricesOperaciones.mostrar(A));
@@ -63,7 +63,7 @@ public class PruebaOrdenacion {
                 V = cargarDatosTeclado(V);
                 break;
             case 'F':
-                String x=leer.cadena("Introduce el nombre del fichero");
+                String x=leer.cadena("Introduce el nombre del fichero .dat");
                 /*Podemos poner un switch con los dos nombres,es más facil para probar.*/
                 V = cargarDatosArchivo(x);
                 break;
@@ -84,19 +84,17 @@ public class PruebaOrdenacion {
     }
 
     public static int[] cargarDatosArchivo(String nombre) throws FileNotFoundException {
-        // Coge el tamaño de la linea de l archivo
   
-    	File fichero=new File(nombre);
-    	Scanner sc =new Scanner(fichero);
-    	
-    	int []V=new int[sc.nextInt()];
-    	while(sc.hasNext()){
-    		for(int i=0;i<V.length;i++){
-        		V[i]=sc.nextInt();
-    		}	
-    	}
-    	sc.close();
-    	
+        int[] V;
+        Scanner sc = new Scanner(new File(nombre));
+        //Primer numero es el tamaño.
+        V = new int[sc.nextInt()];
+        
+            while(sc.hasNext()){
+                for(int i=0;i<V.length;i++){
+                    V[i]=sc.nextInt();	
+                }	
+            }
     	return V;
     }
 
@@ -107,7 +105,8 @@ public class PruebaOrdenacion {
 
     public static int[] cargarDatosAleatorio(int size) {
         
-        
+        int []V=new int[size];
+        return V;
     }
 
     public static void burbuja(int[] t) {
@@ -136,8 +135,8 @@ public class PruebaOrdenacion {
         }
     }
 
-    public static void apartado2(){
-
+    public static void apartado2() throws IOException{
+        int[] A = crearVector();
         System.out.println("\n\nAhora realizaremos pruebas con distintos tamaños del vector");
         int[] valoresN = {100, 500, 1000, 5000, 8000, 9000, 10000, 11000, 20000, 50000};
 
