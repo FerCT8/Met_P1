@@ -20,7 +20,8 @@ public class PruebaOrdenacion {
 
     public static void main(String[] args) throws IOException{ 
         //apartado1();
-        apartado2();
+        //apartado2();
+        apartado3();
     }
 
     public static void apartado1() throws IOException{
@@ -203,4 +204,83 @@ public class PruebaOrdenacion {
      
    }
     
+    public static void apartado3(){
+        
+                char repetir;
+        do {
+            int hola=leer.entero("Introduce un valor N por teclado");
+            int [] A=new int[hola];
+
+            char medida = leer.caracter("¿En qué unidad de medida quieres calcular:\n M=milisegundos\n N=nanosegundos ");
+            long tb0 = obtenerTiempo(medida);
+            titoFibonacci(hola);
+            long tb1 = obtenerTiempo(medida);
+            
+            System.out.println("  N   |	     Iterativo	   |  Recursivo   |");
+            long ts0 = obtenerTiempo(medida);
+            iterativo(hola,A);
+            long ts1 = obtenerTiempo(medida);
+
+            System.out.printf("   %d |        %d       |       %d        |\n",hola, tb1 - tb0, ts1 - ts0);
+            
+            repetir = Character.toUpperCase(leer.caracter("¿Quieres repetir la prueba? (S=si/N=no)"));
+        }while (repetir == 'S');
+    
+    
+    
+           
 }
+      public static int titoFibonacci(int numero){
+          
+          if(numero < 2){
+              return 1;
+          }else{
+              return titoFibonacci(numero-1)+titoFibonacci(numero-2);
+          }
+      }
+      
+      public static int iterativo(int numero, int array[]){
+          for(int i=0; i<numero; i++){
+              if(i<2){
+                  array[i]=1;
+              }else{
+                  array[i]=array[i-1]+array[i-2];
+              }
+          }
+            return array[numero-1];
+      }
+
+      public static void apartado4(){
+           System.out.println("\n\nAhora realizaremos pruebas con distintos tamaños del vector");
+        int[] valoresN = {100, 500, 1000, 5000, 8000, 9000, 10000, 11000, 20000, 50000};
+
+        char medida = leer.caracter("¿En qué unidad de medida quieres calcular:\n M=milisegundos\n N=nanosegundos ");
+        System.out.println("  N   |	     Iterativo	   |  Recursivo     |");
+
+        for( int i=0; i<valoresN.length;i++){
+             
+        int[] A= new int[valoresN[i]];
+        cargarDatosAleatorio(A.length);
+        
+        int[] B = new int[A.length];
+        System.arraycopy(A, 0, B, 0, A.length);
+       
+        long tb0 = obtenerTiempo(medida);
+        iterativo(A.length,B);
+        long tb2 = obtenerTiempo(medida);
+        int[] C = new int[A.length];
+        System.arraycopy(A, 0, C, 0, A.length);
+        long ts0 = obtenerTiempo(medida);
+        titoFibonacci(C.length);
+        long ts2 = obtenerTiempo(medida);
+        
+        System.out.printf("   %d |        %d       |       %d        |\n",A.length, tb2 - tb0, ts2 - ts0);
+       
+    }
+         System.out.printf("\n\n");
+     
+      
+      
+      }
+}
+
