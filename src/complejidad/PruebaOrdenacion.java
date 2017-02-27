@@ -19,7 +19,7 @@ import java.util.Scanner;
 public class PruebaOrdenacion {
 
     public static void main(String[] args) throws IOException{ 
-        apartado1();
+        //apartado1();
         apartado2();
     }
 
@@ -194,12 +194,13 @@ public class PruebaOrdenacion {
     }
     
     static long obtenerTiempo(char medida) {
-        //Devuelve el tiempo dependiendo de si es Mili o Nano/segundos.
+        medida = Character.toUpperCase(medida);
         if(medida=='M'){
             return System.currentTimeMillis();
         }else{
-            return System.nanoTime();
+           return System.nanoTime();
         }
-    }
-
+     
+   }
+    
 }
