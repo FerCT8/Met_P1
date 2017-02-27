@@ -82,7 +82,7 @@ public class PruebaOrdenacion {
                 do {
                     String x=leer.cadena("¿Que archivo quieres utilizar?");
                     if (x.equals("a")) {
-                        V = cargarDatosArchivo("c");
+                        V = cargarDatosArchivo(a);
                         bandera = true;
                     } else if (x.equals("b")) {
                         V = cargarDatosArchivo(b);
