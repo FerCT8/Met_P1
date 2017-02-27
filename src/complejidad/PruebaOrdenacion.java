@@ -35,20 +35,23 @@ public class PruebaOrdenacion {
             int[] B = new int[A.length];
 
             System.arraycopy(A, 0, B, 0, A.length);
-            System.out.println("A\n" + MatricesOperaciones.mostrar(A));
+            
 
             char medida = leer.caracter("¿En qué unidad de medida quieres calcular:\n M=milisegundos\n N=nanosegundos ");
             long tb0 = obtenerTiempo(medida);
             burbuja(B);
             long tb1 = obtenerTiempo(medida);
-
+            
             int[] C = new int[A.length];
             System.arraycopy(A, 0, C, 0, A.length);
+            System.out.println("A\n" + MatricesOperaciones.mostrar(C));
             System.out.println("  N   |	     Burbuja	   |  SeleccionDirecta  |");
             long ts0 = obtenerTiempo(medida);
             seleccionDirecta(C);
             long ts1 = obtenerTiempo(medida);
 
+            System.out.printf("   %d |        %d       |       %d        |\n",A.length, tb1 - tb0, ts1 - ts0);
+            
             repetir = Character.toUpperCase(leer.caracter("¿Quieres repetir la prueba? (S=si/N=no)"));
         } while (repetir == 'S');
     }
@@ -65,30 +68,33 @@ public class PruebaOrdenacion {
             fuenteDatos = Character.toUpperCase(leer.caracter("¿Desde dónde quieres cargar los datos:\n"
                     + " T=teclado\n F=archivo\n A=crearlo con valores aleatorios"));
         }
-        switch(fuenteDatos){
+        switch (fuenteDatos) {
             case 'T':
-               V = cargarDatosTeclado(V,size);
+                V = cargarDatosTeclado(V, size);
                 break;
             case 'F':
-                String a="Prueba1_1.dat";
-                String b="Prueba1_2.dat";
-                System.out.println("a) "+a+"\n"+"b) "+b);
-                String x=leer.cadena("¿Que archivo quieres utilizar?");
-                switch(x){
-                    case "a":
-                        V=cargarDatosArchivo(a);
-                    break;
-                    case "b":
-                        V=cargarDatosArchivo(b);
-                    break;
-                    default:
-                        System.out.println("Selecciona una opcion valida");
-                }
-                break;
+                boolean bandera = false;
+                String a = "Prueba1_1.dat";
+                String b = "Prueba1_2.dat";
+                System.out.println("a) " + a + "\n" + "b) " + b);
+                
+                do {
+                    String x=leer.cadena("¿Que archivo quieres utilizar?");
+                    if (x.equals("a")) {
+                        V = cargarDatosArchivo("c");
+                        bandera = true;
+                    } else if (x.equals("b")) {
+                        V = cargarDatosArchivo(b);
+                        bandera = true;     
+                    } else {
+                        System.out.println("Error en la seleccion");
+                    }
+                } while (bandera == false);
+                   break;
             case 'A':
                 V = cargarDatosAleatorio(size);
-                break;    
-        }   
+                break;
+        }
         return V;
     }
 
@@ -104,16 +110,15 @@ public class PruebaOrdenacion {
     }
 
     public static int[] cargarDatosArchivo(String nombre) throws FileNotFoundException {
-        int[] V;
+        int[] V=null;
         Scanner sc = new Scanner(new File(nombre));
         //Primer numero es el tamaño.
         V = new int[sc.nextInt()];
         
-            while(sc.hasNext()){
                 for(int i=0;i<V.length;i++){
                     V[i]=sc.nextInt();	
                 }	
-            }
+            
     	return V;
     }
 
@@ -146,7 +151,7 @@ public class PruebaOrdenacion {
     public static void seleccionDirecta(int[] t) {
         for (int i = 0; i < t.length - 1; i++) {
             int minimo = i;
-            for (int j = i + 1; j <= t.length; j++) {
+            for (int j = i + 1; j < t.length; j++) {
                 if (t[j] < t[minimo]) {
                     minimo = j;
                 }
@@ -158,16 +163,21 @@ public class PruebaOrdenacion {
     }
 
     public static void apartado2() throws IOException{
-        int[] A = crearVector();
+        
         System.out.println("\n\nAhora realizaremos pruebas con distintos tamaños del vector");
         int[] valoresN = {100, 500, 1000, 5000, 8000, 9000, 10000, 11000, 20000, 50000};
 
         char medida = leer.caracter("¿En qué unidad de medida quieres calcular:\n M=milisegundos\n N=nanosegundos ");
-
         System.out.println("  N   |	     Burbuja	   |  SeleccionDirecta  |");
 
+        for( int i=0; i<valoresN.length;i++){
+             
+        int[] A= new int[valoresN[i]];
+        cargarDatosAleatorio(A.length);
+        
         int[] B = new int[A.length];
         System.arraycopy(A, 0, B, 0, A.length);
+       
         long tb0 = obtenerTiempo(medida);
         burbuja(B);
         long tb2 = obtenerTiempo(medida);
@@ -176,10 +186,13 @@ public class PruebaOrdenacion {
         long ts0 = obtenerTiempo(medida);
         seleccionDirecta(C);
         long ts2 = obtenerTiempo(medida);
-
-        System.out.printf("\n\n");
+        
+        System.out.printf("   %d |        %d       |       %d        |\n",A.length, tb2 - tb0, ts2 - ts0);
+       
     }
-
+         System.out.printf("\n\n");
+    }
+    
     static long obtenerTiempo(char medida) {
         //Devuelve el tiempo dependiendo de si es Mili o Nano/segundos.
         if(medida=='M'){
