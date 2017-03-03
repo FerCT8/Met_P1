@@ -216,7 +216,7 @@ public class PruebaOrdenacion {
             titoFibonacci(hola);
             long tb1 = obtenerTiempo(medida);
             
-            System.out.println("  N   |	     Iterativo	   |  Recursivo   |");
+            System.out.println("  N   |	     Recursivo	   |    Iterativo   |");
             long ts0 = obtenerTiempo(medida);
             iterativo(hola,A);
             long ts1 = obtenerTiempo(medida);
@@ -251,11 +251,12 @@ public class PruebaOrdenacion {
       }
 
       public static void apartado4(){
-           System.out.println("\n\nAhora realizaremos pruebas con distintos tamaños del vector");
+              
+        System.out.println("\n\nAhora realizaremos pruebas con distintos tamaños del vector");
         int[] valoresN = {100, 500, 1000, 5000, 8000, 9000, 10000, 11000, 20000, 50000};
 
         char medida = leer.caracter("¿En qué unidad de medida quieres calcular:\n M=milisegundos\n N=nanosegundos ");
-        System.out.println("  N   |	     Iterativo	   |  Recursivo     |");
+        System.out.println("  N   |	     Iterativo	   |     Recursivo      |");
 
         for( int i=0; i<valoresN.length;i++){
              
@@ -268,19 +269,19 @@ public class PruebaOrdenacion {
         long tb0 = obtenerTiempo(medida);
         iterativo(A.length,B);
         long tb2 = obtenerTiempo(medida);
+        
         int[] C = new int[A.length];
         System.arraycopy(A, 0, C, 0, A.length);
         long ts0 = obtenerTiempo(medida);
-        titoFibonacci(C.length);
+        titoFibonacci(C[i]);
         long ts2 = obtenerTiempo(medida);
         
         System.out.printf("   %d |        %d       |       %d        |\n",A.length, tb2 - tb0, ts2 - ts0);
        
     }
          System.out.printf("\n\n");
-     
-      
+    }
       
       }
-}
+
 
