@@ -64,54 +64,32 @@ public class PruebaOrdenacion2 {
         }
          System.out.printf("\n\n");
       }
-    public static double iterativo(int N){
-         
-         double resul=0;
- 
-         for(int i=1;i<=N;i++){
-             resul=resul+(1/Math.pow(i, 2))*(Math.pow(-1, i-1));
-         }
-        
-          return resul;
-        }
-
-
-    public static double recursivo(int N){
-    
-        double calculado = 0;
-        
-        if(N > 1){
-            System.out.println("");
-            return N;
-        }else{
-            calculado = recursivo(N-1)+recursivo(N-2);
-        }
-        return calculado;
-    }
-    /******************************************************/
-    /*
-    public static int titoFibonacci(int numero){
-          
-          if(numero < 2){
-              return 1;
-          }else{
-              return titoFibonacci(numero-1)+titoFibonacci(numero-2);
-          }
-      }
-    */
-    /*****************************************************************/
-    
-     /***************************************************************/
-     /* public static int iterativo(int numero, int array[]){
-          for(int i=0; i<numero; i++){
-              if(i<2){
-                  array[i]=1;
-              }else{
-                  array[i]=array[i-1]+array[i-2];
-              }
-          }
-            return array[numero-1];
-      }*/
-      /**************************************************************/
       
+       public static int iterativo(int n) {
+        int act = 0, ant1, ant2;
+        ant1 = 0;
+        ant2 = 1;
+        if (n == 0) {
+            act = 0;         
+        }else if(n == 1){
+            act = 1;
+        } else {
+            for (int i = 0; i < n; i++) {
+                act = ant1 + ant2;
+                ant2 = ant1;
+                ant1 = act;
+            }
+        }
+        return act;
+    }
+
+    public static int recursivo(int n) {
+        int m;
+        if (n == 0 || n == 1) {
+            return n;
+        } else {
+            return recursivo(n - 2) + recursivo(n - 1);
+        }
+    }
+
 }

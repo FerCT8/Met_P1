@@ -20,11 +20,30 @@ import java.util.Scanner;
 public class PruebaOrdenacion {
     
     public static void main(String[] args) throws IOException{ 
+        boolean flag=false;
+        do{
+            int hola=leer.entero("Introduzca el numero de apartado");
+       
+           switch(hola){
+            case 1:
+                 apartado1();
+                break;
+            case 2:
+                apartado2();
+                break;
+            case 3:
+                PruebaOrdenacion2.apartado3();
+                break;
+            case 4:
+                PruebaOrdenacion2.apartado4();
+                break;
+            default:
+                System.out.println("#Error#");
+                break;
+        }
         
-        apartado1();
-        apartado2();
-        PruebaOrdenacion2.apartado3();
-        PruebaOrdenacion2.apartado4();
+        }while(flag==false);
+        
         
     }
 
@@ -32,8 +51,7 @@ public class PruebaOrdenacion {
         char repetir;
         do {
             System.out.println("\n\nRealizaremos una prueba para un tamaño de vector dado");
-            //String x="Introduce el tamaño del vector";
-            //System.out.println(x);
+            
             
             int[] A = crearVector();
             int[] B = new int[A.length];
