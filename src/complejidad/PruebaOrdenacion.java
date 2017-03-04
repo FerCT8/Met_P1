@@ -10,6 +10,7 @@ import utilidades.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -17,11 +18,14 @@ import java.util.Scanner;
  *
  */
 public class PruebaOrdenacion {
-
+    
     public static void main(String[] args) throws IOException{ 
-        //apartado1();
-        //apartado2();
-        apartado3();
+        
+        apartado1();
+        apartado2();
+        PruebaOrdenacion2.apartado3();
+        PruebaOrdenacion2.apartado4();
+        
     }
 
     public static void apartado1() throws IOException{
@@ -30,7 +34,6 @@ public class PruebaOrdenacion {
             System.out.println("\n\nRealizaremos una prueba para un tamaño de vector dado");
             //String x="Introduce el tamaño del vector";
             //System.out.println(x);
-            
             
             int[] A = crearVector();
             int[] B = new int[A.length];
@@ -56,10 +59,43 @@ public class PruebaOrdenacion {
             repetir = Character.toUpperCase(leer.caracter("¿Quieres repetir la prueba? (S=si/N=no)"));
         } while (repetir == 'S');
     }
+    
+    public static void apartado2() throws IOException{
+        
+        System.out.println("\n\nAhora realizaremos pruebas con distintos tamaños del vector");
+        int[] valoresN = {100, 500, 1000, 5000, 8000, 9000, 10000, 11000, 20000, 50000};
+
+        char medida = leer.caracter("¿En qué unidad de medida quieres calcular:\n M=milisegundos\n N=nanosegundos ");
+        System.out.println("  N   |	     Burbuja	   |  SeleccionDirecta  |");
+
+        for( int i=0; i<valoresN.length;i++){
+             
+        int[] A= new int[valoresN[i]];
+        cargarDatosAleatorio(A.length);
+        
+        int[] B = new int[A.length];
+        System.arraycopy(A, 0, B, 0, A.length);
+       
+        long tb0 = obtenerTiempo(medida);
+        burbuja(B);
+        long tb2 = obtenerTiempo(medida);
+        int[] C = new int[A.length];
+        System.arraycopy(A, 0, C, 0, A.length);
+        long ts0 = obtenerTiempo(medida);
+        seleccionDirecta(C);
+        long ts2 = obtenerTiempo(medida);
+        
+        System.out.printf("   %d |        %d       |       %d        |\n",A.length, tb2 - tb0, ts2 - ts0);
+       
+    }
+         System.out.printf("\n\n");
+    }
 
     public static int[] crearVector() throws FileNotFoundException{
+        
         int[] V = null;
-        int size=leer.entero("Introduce el tamaño del vector");
+        /**int size=leer.entero("Introduce el tamaño del vector");/*Esto creo que no hace falta, aunque lo ponga*/
+                                                                  /*porque luego lo vuelve a preguntar*/
         char fuenteDatos = leer.caracter("¿Desde dónde quieres cargar los datos:\n "
                 + "T=teclado\n F=archivo\n A=crearlo con valores aleatorios");
         fuenteDatos = Character.toUpperCase(fuenteDatos);
@@ -71,7 +107,7 @@ public class PruebaOrdenacion {
         }
         switch (fuenteDatos) {
             case 'T':
-                V = cargarDatosTeclado(V, size);
+                V = cargarDatosTeclado();
                 break;
             case 'F':
                 boolean bandera = false;
@@ -93,16 +129,17 @@ public class PruebaOrdenacion {
                 } while (bandera == false);
                    break;
             case 'A':
-                V = cargarDatosAleatorio(size);
+                V = cargarDatosAleatorio();
                 break;
         }
         return V;
     }
 
-    public static int[] cargarDatosTeclado(int[]A,int size) {
+    public static int[] cargarDatosTeclado() {
         
-// Lo primero pide el tamaño del vector
-        A=new int[size];    
+        // Lo primero pide el tamaño del vector
+        int size=leer.entero("Introduce el tamaño del vector");
+        int [] A=new int[size];    
         
         for(int i=0;i<A.length;i++){
            A[i]=leer.entero("Introduzca un valor en la posicion "+i);
@@ -163,36 +200,7 @@ public class PruebaOrdenacion {
         }
     }
 
-    public static void apartado2() throws IOException{
-        
-        System.out.println("\n\nAhora realizaremos pruebas con distintos tamaños del vector");
-        int[] valoresN = {100, 500, 1000, 5000, 8000, 9000, 10000, 11000, 20000, 50000};
-
-        char medida = leer.caracter("¿En qué unidad de medida quieres calcular:\n M=milisegundos\n N=nanosegundos ");
-        System.out.println("  N   |	     Burbuja	   |  SeleccionDirecta  |");
-
-        for( int i=0; i<valoresN.length;i++){
-             
-        int[] A= new int[valoresN[i]];
-        cargarDatosAleatorio(A.length);
-        
-        int[] B = new int[A.length];
-        System.arraycopy(A, 0, B, 0, A.length);
-       
-        long tb0 = obtenerTiempo(medida);
-        burbuja(B);
-        long tb2 = obtenerTiempo(medida);
-        int[] C = new int[A.length];
-        System.arraycopy(A, 0, C, 0, A.length);
-        long ts0 = obtenerTiempo(medida);
-        seleccionDirecta(C);
-        long ts2 = obtenerTiempo(medida);
-        
-        System.out.printf("   %d |        %d       |       %d        |\n",A.length, tb2 - tb0, ts2 - ts0);
-       
-    }
-         System.out.printf("\n\n");
-    }
+    
     
     static long obtenerTiempo(char medida) {
         medida = Character.toUpperCase(medida);
@@ -203,85 +211,5 @@ public class PruebaOrdenacion {
         }
      
    }
-    
-    public static void apartado3(){
-        
-                char repetir;
-        do {
-            int hola=leer.entero("Introduce un valor N por teclado");
-            int [] A=new int[hola];
 
-            char medida = leer.caracter("¿En qué unidad de medida quieres calcular:\n M=milisegundos\n N=nanosegundos ");
-            long tb0 = obtenerTiempo(medida);
-            titoFibonacci(hola);
-            long tb1 = obtenerTiempo(medida);
-            
-            System.out.println("  N   |	     Recursivo	   |    Iterativo   |");
-            long ts0 = obtenerTiempo(medida);
-            iterativo(hola,A);
-            long ts1 = obtenerTiempo(medida);
-
-            System.out.printf("   %d |        %d       |       %d        |\n",hola, tb1 - tb0, ts1 - ts0);
-            
-            repetir = Character.toUpperCase(leer.caracter("¿Quieres repetir la prueba? (S=si/N=no)"));
-        }while (repetir == 'S');
-    
-    
-    
-           
 }
-      public static int titoFibonacci(int numero){
-          
-          if(numero < 2){
-              return 1;
-          }else{
-              return titoFibonacci(numero-1)+titoFibonacci(numero-2);
-          }
-      }
-      
-      public static int iterativo(int numero, int array[]){
-          for(int i=0; i<numero; i++){
-              if(i<2){
-                  array[i]=1;
-              }else{
-                  array[i]=array[i-1]+array[i-2];
-              }
-          }
-            return array[numero-1];
-      }
-
-      public static void apartado4(){
-              
-        System.out.println("\n\nAhora realizaremos pruebas con distintos tamaños del vector");
-        int[] valoresN = {100, 500, 1000, 5000, 8000, 9000, 10000, 11000, 20000, 50000};
-
-        char medida = leer.caracter("¿En qué unidad de medida quieres calcular:\n M=milisegundos\n N=nanosegundos ");
-        System.out.println("  N   |	     Iterativo	   |     Recursivo      |");
-
-        for( int i=0; i<valoresN.length;i++){
-             
-        int[] A= new int[valoresN[i]];
-        cargarDatosAleatorio(A.length);
-        
-        int[] B = new int[A.length];
-        System.arraycopy(A, 0, B, 0, A.length);
-       
-        long tb0 = obtenerTiempo(medida);
-        iterativo(A.length,B);
-        long tb2 = obtenerTiempo(medida);
-        
-        int[] C = new int[A.length];
-        System.arraycopy(A, 0, C, 0, A.length);
-        long ts0 = obtenerTiempo(medida);
-        titoFibonacci(C[i]);
-        long ts2 = obtenerTiempo(medida);
-        
-        System.out.printf("   %d |        %d       |       %d        |\n",A.length, tb2 - tb0, ts2 - ts0);
-       
-    }
-         System.out.printf("\n\n");
-    }
-      
-      }
-
-
