@@ -47,19 +47,19 @@ public class PruebaOrdenacion2 {
 
         for(int i=0;i<valoresN.length;i++){
             
-            int A=(int)(valoresN[i]);
+            
 
             long tb0 = obtenerTiempo(medida);
-            iterativo(A);
+            iterativo(valoresN[i]);
             long tb2 = obtenerTiempo(medida);
             long tbiterativo=tb2-tb0;
             
             long ts0 = obtenerTiempo(medida);
-            recursivo(A);
+            recursivo(valoresN[i]);
             long ts2 = obtenerTiempo(medida);
             long tsrecursivo=ts2-ts0;
             
-            System.out.printf("   %d |        %d       |       %d        |\n",A,tbiterativo,tsrecursivo);
+            System.out.printf("   %d |        %d       |       %d        |\n",valoresN[i],tbiterativo,tsrecursivo);
 
         }
          System.out.printf("\n\n");
