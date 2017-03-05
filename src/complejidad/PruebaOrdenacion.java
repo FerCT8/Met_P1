@@ -16,7 +16,10 @@ import java.util.Scanner;
 
 /**
  *
+ * @author Fernando
+ * @author Javier
  */
+
 public class PruebaOrdenacion {
     
     public static void main(String[] args) throws IOException{ 

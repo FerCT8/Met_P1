@@ -7,8 +7,10 @@ package utilidades;
 
 /**
  *
- * @author marcos
+ * @author Fernando
+ * @author Javier
  */
+
 public class MatricesOperaciones {
     
     public static String mostrar(int [] A){
