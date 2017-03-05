@@ -22,16 +22,16 @@ public class PruebaOrdenacion2 {
             int [] A=new int[hola];
 
             char medida = leer.caracter("¿En qué unidad de medida quieres calcular:\n M=milisegundos\n N=nanosegundos ");
-            long tb0 = obtenerTiempo(medida);
+            long tb = obtenerTiempo(medida);
             iterativo(hola);
-            long tb1 = obtenerTiempo(medida);
+            long tbi = obtenerTiempo(medida);
             
             System.out.println("  N   |	     Iterativo	   |  Recursivo   |");
-            long ts0 = obtenerTiempo(medida);
+            long ts = obtenerTiempo(medida);
             recursivo(hola);
-            long ts1 = obtenerTiempo(medida);
+            long tsi = obtenerTiempo(medida);
 
-            System.out.printf("   %d |        %d       |       %d        |\n",hola, tb1 - tb0,ts1 - ts0);
+            System.out.printf("   %d |        %d       |       %d        |\n",hola, tbi- tb,ts - tsi);
             
             repetir = Character.toUpperCase(leer.caracter("¿Quieres repetir la prueba? (S=si/N=no)"));
         }while (repetir == 'S');
@@ -47,19 +47,19 @@ public class PruebaOrdenacion2 {
 
         for(int i=0;i<valoresN.length;i++){
             
+            int valor=valoresN[i];
             
-
-            long tb0 = obtenerTiempo(medida);
-            iterativo(valoresN[i]);
-            long tb2 = obtenerTiempo(medida);
-            long tbiterativo=tb2-tb0;
+            long tv = obtenerTiempo(medida);
+            iterativo(valor);
+            long tvi= obtenerTiempo(medida);
+            long tbiterativo=tvi-tv;
             
-            long ts0 = obtenerTiempo(medida);
-            recursivo(valoresN[i]);
-            long ts2 = obtenerTiempo(medida);
-            long tsrecursivo=ts2-ts0;
+            long tz= obtenerTiempo(medida);
+            recursivo(valor);
+            long tzi = obtenerTiempo(medida);
+            long tsrecursivo=tzi-tz;
             
-            System.out.printf("   %d |        %d       |       %d        |\n",valoresN[i],tbiterativo,tsrecursivo);
+            System.out.printf("   %7d |        %10d     |       %10d      |\n",valor,tbiterativo,tsrecursivo);
 
         }
          System.out.printf("\n\n");

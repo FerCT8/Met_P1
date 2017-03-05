@@ -25,7 +25,8 @@ public class PruebaOrdenacion {
     public static void main(String[] args) throws IOException{ 
         boolean flag=false;
         do{
-            int hola=leer.entero("Introduzca el numero de apartado");
+            System.out.println("\nPráctica I Metodologia de la Programacion \n \n\nApartado 1--Apartado 2-----Parte I\nApartado 3--Apartado 4-----Parte II ");
+            int hola=leer.entero("\nIntroduzca el numero de apartado");
        
            switch(hola){
             case 1:
@@ -60,8 +61,7 @@ public class PruebaOrdenacion {
             int[] B = new int[A.length];
 
             System.arraycopy(A, 0, B, 0, A.length);
-            
-
+           
             char medida = leer.caracter("¿En qué unidad de medida quieres calcular:\n M=milisegundos\n N=nanosegundos ");
             long tb0 = obtenerTiempo(medida);
             burbuja(B);
@@ -222,15 +222,18 @@ public class PruebaOrdenacion {
     }
 
     
-    
     static long obtenerTiempo(char medida) {
-        medida = Character.toUpperCase(medida);
-        if(medida=='M'){
-            return System.currentTimeMillis();
-        }else{
-           return System.nanoTime();
+
+        long time = 0;
+        switch (medida) {
+            case 'M':
+                time = System.currentTimeMillis();
+                break;
+            case 'N':
+                time = System.nanoTime();
+                break;
         }
-     
-   }
+        return time;
+    }
 
 }
