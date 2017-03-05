@@ -23,13 +23,15 @@ public class PruebaOrdenacion2 {
             long tb = obtenerTiempo(medida);
             iterativo(N);
             long tbi = obtenerTiempo(medida);
+            long tbrecursivo=tbi-tb;
             
             System.out.println("  N   |	     Iterativo	   |  Recursivo   |");
             long ts = obtenerTiempo(medida);
             recursivo(N);
             long tsi = obtenerTiempo(medida);
+            long tsrecursivo=tsi-ts;
 
-            System.out.printf("   %d |        %d       |       %d        |\n",N, tbi- tb,ts - tsi);
+            System.out.printf("   %d |        %d       |       %d        |\n",N, tbrecursivo,tsrecursivo);
             
             repetir = Character.toUpperCase(leer.caracter("¿Quieres repetir la prueba? (S=si/N=no)"));
         }while (repetir == 'S');
@@ -50,14 +52,14 @@ public class PruebaOrdenacion2 {
             long tv = obtenerTiempo(medida);
             iterativo(valor);
             long tvi= obtenerTiempo(medida);
-            long tbiterativo=tvi-tv;
+            long tviterativo=tvi-tv;
             
             long tz= obtenerTiempo(medida);
             recursivo(valor);
             long tzi = obtenerTiempo(medida);
-            long tsrecursivo=tzi-tz;
+            long tzrecursivo=tzi-tz;
             
-            System.out.printf("   %7d |        %10d     |       %10d      |\n",valor,tbiterativo,tsrecursivo);
+            System.out.printf("   %7d |        %10d     |       %10d      |\n",valor,tviterativo,tzrecursivo);
 
         }
          System.out.printf("\n\n");
