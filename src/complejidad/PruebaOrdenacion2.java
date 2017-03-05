@@ -9,7 +9,7 @@ import static complejidad.PruebaOrdenacion.obtenerTiempo;
 import utilidades.leer;
 
 /**
- *
+ * @author Javier
  * @author Fernando
  */
 public class PruebaOrdenacion2 {

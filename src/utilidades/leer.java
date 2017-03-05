@@ -9,8 +9,10 @@ import java.util.*;
 
 /**
  *
- * @author marcos
+ * @author Fernando
+ * @author Javier
  */
+
 public class leer {
     
     private static final Scanner TECLADO=new Scanner(System.in);
