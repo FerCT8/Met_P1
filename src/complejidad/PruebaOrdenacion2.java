@@ -18,20 +18,18 @@ public class PruebaOrdenacion2 {
         
                 char repetir;
         do {
-            int hola=leer.entero("Introduce un valor N por teclado");
-            int [] A=new int[hola];
-
+            int N=leer.entero("Introduce un valor N por teclado");
             char medida = leer.caracter("¿En qué unidad de medida quieres calcular:\n M=milisegundos\n N=nanosegundos ");
             long tb = obtenerTiempo(medida);
-            iterativo(hola);
+            iterativo(N);
             long tbi = obtenerTiempo(medida);
             
             System.out.println("  N   |	     Iterativo	   |  Recursivo   |");
             long ts = obtenerTiempo(medida);
-            recursivo(hola);
+            recursivo(N);
             long tsi = obtenerTiempo(medida);
 
-            System.out.printf("   %d |        %d       |       %d        |\n",hola, tbi- tb,ts - tsi);
+            System.out.printf("   %d |        %d       |       %d        |\n",N, tbi- tb,ts - tsi);
             
             repetir = Character.toUpperCase(leer.caracter("¿Quieres repetir la prueba? (S=si/N=no)"));
         }while (repetir == 'S');
